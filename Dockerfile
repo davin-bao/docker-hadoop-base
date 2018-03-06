@@ -1,7 +1,7 @@
 FROM java:8-jdk-alpine
 
 RUN echo -e "https://mirrors.ustc.edu.cn/alpine/v3.4/main\nhttps://mirrors.ustc.edu.cn/alpine/v3.4/community\n" > /etc/apk/repositories \
-&& apk add --no-cache openssh bash vim openrc tzdata
+&& apk add --no-cache openssh bash vim tzdata
 
 
 COPY id_rsa /root/.ssh/id_rsa
@@ -16,4 +16,3 @@ RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 && chmod 600 /etc/ssh/ssh_host_ecdsa_key \
 && chmod 600 /etc/ssh/ssh_host_ed25519_key \
 && echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config \
-&& rc-update add sshd
